@@ -4,12 +4,28 @@
 <meta charset="UTF-8">
 <title>ChatB</title>
 <link rel="stylesheet" type="text/css" href="/css/Chat.css" />
-<script></script>
+<script>
+var area;
+var tx;
+function init(){
+	area=document.getElementById("area");
+	tx=document.getElementById("tx");
+}
+function enter(){
+	var key=event.keyCode;
+	if(key==13){
+	opener.chatA.txt_area.value+=tx.value+"\n";
+	area.value+=tx.value+"\n";
+	tx.value="";
+
+	}
+}
+</script>
 </head>
-<body>
+<body onLoad="init()">
 	<div id="wrapper">
-		<textarea>점심먹었닝?</textarea>
-		<input type="text">
+		<textarea id="area"></textarea>
+		<input type="text" onKeyUp="enter()" id="tx">
 	</div>
 </body>
 </html>

@@ -4,12 +4,28 @@
 <meta charset="UTF-8">
 <title>ChatA</title>
 <link rel="stylesheet" type="text/css" href="/css/Chat.css" />
-<script></script>
+<script>
+var txt;
+var txt_area;
+function init(){
+	txt=document.getElementById("txt");
+	txt_area=document.getElementById("txt_area");
+}
+function enter(){
+	//chatB의 textarea를제어함
+	var key=event.keyCode;
+	if(key==13){
+	opener.chatB.area.value+=txt.value+"\n";
+	txt_area.value+=txt.value+"\n";
+	txt.value="";
+	}
+}
+</script>
 </head>
-<body>
+<body onLoad="init()">
 	<div id="wrapper">
-		<textarea>점심먹었닝?</textarea>
-		<input type="text">
+		<textarea id="txt_area"></textarea>
+		<input type="text" onKeyUp="enter()" id="txt">
 	</div>
 </body>
 </html>
