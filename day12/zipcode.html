@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>우편번호검색</title>
+<script>
+//새창에서 선택한 현재의 우편번호 텍스트를, 부모윈도우의
+//우편번호 입력란에 채워넣는다 +주소도 채워넣는다.!
+function setPost(zip,addr){
+	//alert(zip.substring(zip.indexOf("4"),zip.lastIndexOf("6")))
+	var arr=zip.split("-");
+	opener.document.form1.zipcode1.value=arr[0];
+	opener.document.form1.zipcode2.value=arr[1];
+	opener.document.form1.add1.value=addr;
+	window.close();
+	opener.document.form1.add2.focus();
+
+}
+</script>
+</head>
+
+<body>
+<table width="100%" border="1px">
+	<tr>
+		<td colspan="2" align="center">
+			<input type="text">
+			<img src="/images/search_button.png" width="40px" height="40px">
+		</td>
+	</tr>
+	<tr onMouseOver="this.style.background='#33ff99'" onMouseOut="this.style.background=''">
+		<td><a href="Javascript:setPost('123-456','화순군능주면')">123-456</a></td>
+		<td>화순군 능주면</td>
+	</tr>
+	
+	<tr onMouseOver="this.style.background='#33ff99'" onMouseOut="this.style.background=''">
+		<td><a href="">745-882</a></td>
+		<td>고마로 13길</td>
+	</tr>
+	
+	<tr onMouseOver="this.style.background='#33ff99'" onMouseOut="this.style.background=''">
+		<td><a href="">998-255</a></td>
+		<td>마포구 동교동</td>
+	</tr>
+	
+	<tr onMouseOver="this.style.background='#33ff99'" onMouseOut="this.style.background=''">
+		<td><a href="">568-778</a></td>
+		<td>관악구 신림동</td>
+	</tr>
+</table>
+</body>
+</html>

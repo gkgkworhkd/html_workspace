@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>스위치 on,off</title>
+<style>
+/*누구를 어떻게 할지에 대한 문법뿐
+ input 이라는 통합 혹은 ID를 부여해 {}을이용하여 마크업을합
+*/
+	input{
+	width:200px;
+	height:60px;
+	background:#0099ff;
+	font-size:20pt;
+	color:red;
+	font-weight:bold;
+
+	}
+body {
+	background:black;
+
+}
+</style>
+<script>
+var bg;
+var flag=true
+function switchOn(){
+	//문서에 적용된 style background를 노란색으로 적용
+	document.body.style.background="yellow";
+}
+function switchOff(){
+	//문서에 적용된 style background를 검은색으로 적용
+	document.body.style.background="black";
+}
+
+function toggle(){
+	document.body.style.background=bg;
+	flag=!flag;
+	//bg=(flag)?"black":"yellow";
+	if(flag){
+		bg="black";
+	}else{ bg="yellow"
+}
+
+
+
+
+
+</script>
+
+
+</head>
+
+
+<body>
+
+<input type="button" value="ON" onClick= "switchOn()" >
+<input type="button" value="OFF" onClick= "switchOff()">
+<input type="button" value="원터치" onClick="toggle()">
+
+</body>
+</html>

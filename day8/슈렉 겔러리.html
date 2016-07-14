@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>슈렉 겔러리</title>
+
+<style>
+#wrapper{
+	width:500px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:200px;
+	text-align:center;
+	font-size:20pt;
+}
+
+#mask{
+	width:500px;
+	height:340px;
+	overflow:hidden;
+	left:0px;
+	top:0px;
+}
+
+#box{
+	width:3500px;
+	height:340px;
+	position:relative;/*마스크를 기준으로....*/
+	left:0px;
+	top:0px;
+
+}
+a{
+	text-decoration:none;/*밑줄 없애기*/
+	color:black;
+}
+a:hover{
+	color:#3300ff;
+}
+</style>
+
+<script>
+var box;
+var arr=[
+	"../images/shurek/img0.jpg",
+	"../images/shurek/img1.jpg",
+	"../images/shurek/img2.jpg",
+	"../images/shurek/img3.jpg",
+	"../images/shurek/img4.jpg",
+	"../images/shurek/img5.jpg",
+	"../images/shurek/img6.jpg"
+	];
+var a=0.9;
+var targetX=0;
+function init(){
+	box=document.getElementById("box");	
+	box.style.width=500*arr.length+"px";
+	for(var i=0; i<arr.length;i++){
+		var img=document.createElement("img");
+		img.src=arr[i];
+		box.appendChild(img);
+
+	}
+	move();
+}
+
+function showImg(pos){//매게변수....
+	//box.style.left=(-pos*500)+"px"
+	//이미지 위치는 =(타겟-비율계수*(타겟-나의위치))
+	targetX=-pos*500;
+	
+}
+function move(){
+	box.style.left=targetX-a*(targetX - parseFloat(box.style.left))+"px";//parseFloat 가 더 정교하다!.
+	console.log(box.style.left);
+	setTimeout("move()",10);								//셋타임 아웃을 할때는 항상 새로운 함수를 열어 온로드에 코딩한후사용!
+
+}
+</script>
+</head>
+<body onLoad="init()">
+	<div id="wrapper">
+		<div id="mask">
+			<div id="box" style="left:0px">
+			</div>
+		</div>
+		<a href="javascript:showImg(0)" >●</a>
+		<a href="javascript:showImg(1)" >●</a>		
+		<a href="javascript:showImg(2)" >●</a>
+		<a href="javascript:showImg(3)" >●</a>
+		<a href="javascript:showImg(4)" >●</a>
+		<a href="javascript:showImg(5)" >●</a>
+		<a href="javascript:showImg(6)" >●</a>
+	</div>
+</body>
+</html>

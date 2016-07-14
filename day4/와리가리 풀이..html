@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>와리가리.. 풀이</title>
+<style>
+#star{
+	position:absolute;
+	left:0px;
+	top:100px;
+}
+
+</style>
+
+<script>
+//문서내의 star의 x축을 증가시키다가 톡정 목표지점에 도달하면
+//x축을 감소시키자
+var x=0
+var forward=true;//별이 앞으로가야될지 뒤로가야될지 결정하는 변수
+//setTimeOut("move()"10)
+
+function move(){
+	
+	document.getElementById("star").style.left=x+"px";
+	console.log(x);//항상 확인하자
+	if(forward){
+	x=x+10;
+	}else{
+	x=x-10;
+	}
+	if(x==200 || x==0){
+	forward=!forward;//!!
+	}
+	//단 특정 값에 도달하면 forward를 뒤집자
+	
+}
+
+
+
+</script>
+
+</head>
+
+<body>
+
+<input type="button" value="이동" onClick="move()">
+
+
+<span id="star">☆</span>  
+
+
+</body>
+</html>

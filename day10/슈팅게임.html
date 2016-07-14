@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>슈팅게임</title>
+<style>
+body{
+	margin:auto;
+}
+#stage{
+	background-image:url("../images/space1.jpg");
+}
+</style>
+<script src="../lib/lib.js"></script>
+<script src="../lib/hero.js"></script>
+<script src="../lib/bullet.js"></script>
+<script src="../lib/Enemy1.js"></script>
+<script>
+var stage;
+var span;
+var bgx=0;
+var hero;
+var enemyArray=new Array();
+window.addEventListener("load",function(){
+	init();
+	bgEffect();
+
+	
+});
+function init(){
+	stage=document.getElementById("stage");
+	stage.style.width=screen.width+"px";
+	stage.style.height=800+"px";
+	//우주선 등장
+	hero=new Hero(stage,50,50,0,0,"../images/ship.png");
+	hero.init();
+	//적군등장
+	var posY=0;
+	var posX;
+	for(var i=0; i<=9;i++){
+			posY++;
+			var enemy=new Enemy1(stage,50,50,screen.width-200,0+(50*posY),"../images/ball.png");
+			enemyArray.push(enemy);
+			enemy.init();	
+			
+	}
+
+}
+window.addEventListener("keydown",function(){
+	var key=event.keyCode;
+
+	switch(key){
+		case 32:fire(); break;
+		case 37:hero.velX=-3; break;
+		case 38:hero.velY=-3; break;
+		case 39:hero.velX=3; break;
+		case 40:hero.velY=3; break;
+	}
+});
+
+window.addEventListener("keyup",function(){
+	var key=event.keyCode;
+	if(key==37 || key==39){
+		hero.velX=0;
+	}
+	if(key==38 || key==40){
+		hero.velY=0;
+	}
+});
+function bgEffect(){
+	bgx-=5
+	stage.style.backgroundPosition=bgx+"px 0px";
+	setTimeout("bgEffect()",10);
+}
+//우주선 총알발사
+function fire(){
+	var Bullet=new bullet(stage,hero.x,hero.y)
+	Bullet.init();
+}
+
+</script>
+</head>
+<body>
+	<div id="stage">
+	</div>
+</body>
+</html>

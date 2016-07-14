@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>프로그램 테이블</title>
+<script>
+var f=prompt("층수를 입력하세요")
+var h=prompt("호수를 입력하세요")
+var b=prompt("건물의 두께를입력하시오")
+var wid=prompt("건물의 가로폭를입력하시오")
+document.write("<table width=\""+wid+"px\" border=\""+b+"px\">");
+
+for(var a=1; a<=f; a++){
+		
+		document.write("<tr>");
+		for(var i=1; i<=h; i++)
+		{
+		document.write("<td width=\"100px\">"+a+"0"+i+"호</td>");//&nbsp공백문자  2중  for 문~!!! 전역변수여서 가장큰 브레이스가끝나기전에 초기화되지않는다!!!!!  중요
+	}
+	document.write("</tr>");
+}
+document.write("</table>");
+
+</script>
+</head>
+<body>
+</body>
+</html>

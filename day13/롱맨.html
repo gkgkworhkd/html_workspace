@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>록맨</title>
+<script src="../lib/Rockman.js"></script>
+<script src="../lib/block.js"></script>
+<script src="../lib/lib.js"></script>
+<script src="../lib/bullet.js"></script>
+<script src="../lib/Enemy1.js"></script>
+<script>
+var stage;
+var bArray=new Array();
+var rockman;
+var step=0;
+var enemyArray=new Array();
+var actionArray=[
+	"../images/action/run0.png",
+	"../images/action/run1.png",
+	"../images/action/run2.png"
+]
+
+var actionCount=0;//몇번쨰 액션을 보여줄지를 결정하는 변수
+var bgX=0;
+window.addEventListener("load", function(){
+	init();
+	
+
+});
+
+function init(){
+	document.body.style.margin="0px"; //body에 마진 없애기!!
+	//무대 크기 설정하기 
+	stage=document.getElementById("stage");
+	stage.style.width=screen.width+"px";
+	stage.style.height=800+"px";
+	stage.style.backgroundImage="url('../images/back.jpg')";
+	for(var i=0; i<20;i++){
+	var block= new Block(stage,40,40,40*i,750,"../images/block.png")
+	block.init();
+	bArray.push(block);
+
+	}
+	
+	gameStart();
+	bgEffect();
+	createEnemy();
+	
+	/*stage.addEventListener("click",function(){
+	var posX=event.clientX;
+	var posY=event.clientY;
+	var block= new Block(stage,40,40,posX,posY,"../images/block.png")
+	block.init();
+	bArray.push(block);
+
+	});*/
+}
+//록맨등장
+function gameStart(){
+	//주인공 등장 
+	rockman = new Rockman(stage,60,65,50,100,"../images/rock1.png");
+	rockman.init();
+}
+function createEnemy(){	
+	var enemyImg=[
+		"../images/enemy/e1.png",
+		"../images/enemy/e2.png",
+		"../images/enemy/e3.png",
+		"../images/enemy/e4.png"
+	]
+	
+
+	for(var i=0;i<=8;i++){
+		var r=getRandomByRange(enemyImg.length-1,0)
+	var em=new Enemy1(stage,30,30,screen.width-75,100+(50*i),enemyImg[r]);
+	em.init();
+	enemyArray.push(em);
+	}
+}
+
+//키보드 4ㄱㅐ에대한처리
+
+window.addEventListener("keydown",function(){
+	var key=event.keyCode;
+	switch(key){
+		case 32: jump();break;
+		case 37:go(-2);break;
+		case 39:go(2);break;
+		case 65:fire();break;
+	}
+});
+window.addEventListener("keyup",function(){
+	var key=event.keyCode
+	if(key==37 || key==39){
+		rockman.velX=0;
+		step=0;
+	}
+	rockman.running=false;
+});
+///마우스로 블럭 생성하기!
+
+function jump(){
+	if(!rockman.jumping && !rockman.falling ){
+	rockman.jumping=true;
+	rockman.velY=-13;
+	}
+}
+function fire(){
+	var Bullet= new bullet(stage,rockman.x,rockman.y);
+	Bullet.init();
+}
+
+function go(s){ 
+	step=s;
+	rockman.velX=step;
+	//액션처리
+	rockman.running=true;
+}
+//배경처리
+
+function bgEffect(){
+	bgX-=step;
+	stage.style.backgroundPosition=bgX+"px 0xp";
+	setTimeout("bgEffect()",100);
+}
+</script>
+</head>
+<body>
+<div id="stage"></div>
+<input type="button" onClick="gameStart()" value="등장">
+</body>
+</html>

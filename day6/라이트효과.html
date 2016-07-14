@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>라이트 효과</title>
+<script>
+//후보색 7개를 배열하여 랜덤하게 
+//자동으로 전환
+var col=new Array();
+col[0]="#ff3399";
+col[1]="#9933cc";
+col[2]="#ffff00";
+col[3]="#993300";
+col[4]="#ccff66";
+col[5]="#3333cc";
+col[6]="#00ff33";
+function setBg(){
+	var r=Math.random();
+
+	document.body.style.background=col[parseInt(r*7)]
+	setTimeout("setBg()",100);
+
+}
+	
+
+</script>
+</head>
+<body>
+<input type="button" value="시작" onClick="setBg()">
+
+</body>
+</html>

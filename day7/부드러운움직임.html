@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>부드럽게 움직이는 이미지</title>
+<style>
+div{
+	height:1000px;
+}
+</style>
+<script>
+var pic;
+var a=0.9;
+function init(){
+	pic=document.getElementById("pic");
+	pic.style.left=event.clientX-a*(event.clientX-parseInt(pic.style.left))+"px";
+	pic.style.top=event.clientY-a*(event.clientY-parseInt(pic.style.top))+"px";
+	setTimeout("init()",10);
+}
+function move(){
+	console.log(event.clientY)
+	
+	
+	//alert(parseInt(pic.style.left)); 뒤에 px가 사라진다!!
+	
+	//목표지점 -비율계수 *(목표지점-나의위치);
+	
+}
+</script>
+</head>
+<body onLoad="init()" >
+<div>
+<img src="../images/pic.jpg"  id="pic" style="position:absolute;left:0px;top:200px; width:100px;">
+</div>
+</body>
+</html>

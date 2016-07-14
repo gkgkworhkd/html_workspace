@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Document</title>
+<script>
+//이영역은 프로그래밍 영역이다
+//컴퓨터에게 일거리를 제공하려면 메모리에 올라와야한다!
+//CPU는 속도가빠른 메모리만 본다.
+var x=3;//메모리에 3을 올리고, 그올라간 3을 x라는 이름으로 가르킨다
+var y=4;//x,y는 변수 (언제나 변할수있기때문에 ex x=6) 
+x=6//위에서 선언한 변수는 값은 프로그램 진행중에 얼마든지 변할수있다 var는 붙히지않는다
+</script>
+
+</head>
+<body>  
+</body>
+</html>

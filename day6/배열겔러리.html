@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>배열겔러리</title>
+<style>
+#bg
+{
+	width:800px;
+	height:500px;
+	border:2px solid black;
+	margin:auto;
+	background:white;
+}
+#pic{
+	width:100%;
+	height:80%;
+}
+
+#inside{
+	width:100%;
+	height:20%;
+	background:black;
+	text-align:center;
+}
+#bt{
+	width:150px;
+	height:100px;
+	transform:rotate(180deg);
+	
+}
+#bt1{
+	width:150px;
+	height:100px;
+	
+
+}
+</style>
+<script>
+var photo = new Array();
+photo[0]="../Images/air.jpg"
+photo[1]="../Images/boy.jpg"
+photo[2]="../Images/create.jpg"
+photo[3]="../Images/dvice.jpg"
+photo[4]="../Images/event.jpg"
+photo[5]="../Images/food.jpg"
+photo[6]="../Images/hour.jpg"
+photo[7]="../Images/ice.jpg"
+photo[8]="../Images/pic.jpg"
+var n=1;
+function next(){
+	n++
+	document.getElementById("pic").src=photo[n];
+	if(n==9){
+	alert("끝낫습니다!");
+	}
+
+}
+function before(){
+	n--
+	document.getElementById("pic").src=photo[n];
+	if(n==0){
+	alert("처음입니당");
+	}
+
+}
+
+</script>
+
+</head>
+<body>
+<div id="bg">
+	<img src="../images/air.jpg" id="pic">
+	<div id="inside">
+	<img src="../images/aa.png" id="bt" onClick="before()">
+	<img src="../images/aa.png" id="bt1" onClick="next()">
+	</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>스톱워치</title>
+<style>
+#txt{
+	width:200px;
+	height:150px;
+	font-size:100pt;
+	font-weight:bold;
+	color:red;
+	background:yellow;
+	text-align:right;
+
+}
+</style>
+<script>
+var ss=0;
+var st;
+function init(){
+	document.getElementById("txt").value=0;
+}
+function start(){
+	ss++;
+	document.getElementById("txt").value=ss;
+	st=setTimeout("start()",100);
+	//문서내 버튼을 한번만 누르게 하기
+	document.getElementById("bt_strat").disabled=true;
+
+}
+function stop(){
+	clearTimeout(st);
+	document.getElementById("bt_strat").disabled=false;
+	//기존 셋타임 아웃을 멈추는것
+}
+
+
+</script>
+</head>
+<body onLoad="init()">
+<input type="text" id="txt">
+<input type="button" id="bt_strat" value="시작" onClick="start()">
+<input type="button" value="정지" onClick="stop()">
+
+
+</body>
+</html>

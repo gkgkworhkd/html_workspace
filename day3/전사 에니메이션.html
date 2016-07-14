@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+//문서내의  pic이라는 이미지의 src를바꾸자
+var x=1;
+
+function next(){
+	x++;
+	//x=(x >= 19)?1:x;
+		console.log(x)
+		//x19이상이되면 다시 전환
+	document.getElementById("pic").src="../Images/warior/image"+x+".png";
+if(x>=19){
+x=1;
+}
+	//컴퓨터 스스로 이함수를 호출하게하자
+	//1/1000초까지표현 ex(1초 1000)
+	setTimeout("next()",100)
+	
+}
+
+
+
+</script>
+
+
+</head>
+
+
+
+<body>
+<input type="button" value="헐떠억" onClick="next()"><br>
+<img src="../Images/warior/image1.png" id="pic">
+</body>
+</html>

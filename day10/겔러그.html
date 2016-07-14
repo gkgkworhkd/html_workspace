@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>겔러그으~</title>
+
+<style>
+body{
+	margin:0px;
+
+}
+#stage{
+	width:1000px;
+	height:800px;
+	background-Image:url("../images/gallerxy/bg.png");
+}
+</style>
+<script src="../lib/lib.js"></script>
+<script src="../lib/hero.js"></script>
+<script src="../lib/Enemy.js"></script>
+<script src="../lib/Bullet2.js"></script>
+
+<script>
+var stage;
+var a=0;
+var hero;
+//배열을 2개로 선언!!
+var kingArray=new Array(10);//대왕 두마리넣기
+var enemyArray=new Array(90);//졸병 파리넣기
+
+var enemyImg=["../images/gallerxy/enermy1.png","../images/gallerxy/enermy2.png","../images/gallerxy/blue_king.png","../images/gallerxy/green_king.png"];
+
+
+window.addEventListener("load",function(){
+	stage=document.getElementById("stage");
+	bgEffect();	
+
+	hero=new Hero(stage,50,50,475,730);
+	hero.init();
+	
+
+	//빨간 적군등장
+	var redY=0;
+	var redCount=0;
+	var enemyIndex=0;
+	
+	//대왕파리
+	for(var i=0; i<=9;i++){
+		if(i<5){
+		var King=new Enemy(stage,70,70,100+(i*70),70,enemyImg[2])	
+		}else{
+		var King=new Enemy(stage,70,70,100+(i*70),70,enemyImg[3])	
+		}
+		King.init();
+		kingArray.push(King);
+
+	}
+
+	for(var i=0; i<90;i++){
+		if(i%15==0){
+			redY++;
+			redCount=0;
+			enemyIndex++;
+		}if(enemyIndex==2){
+			enemyIndex=0;
+		}
+		
+		var enemy = new Enemy(stage,30,30,100+(redCount*50),100+(redY*50),enemyImg[enemyIndex])	
+		enemy.init();
+		redCount++;
+		enemyArray.push(enemy);
+
+	}
+});
+//키보드 입력 대상
+window.addEventListener("keydown",function(){
+	var key=event.keyCode; //입력한아스키코드값
+	switch(key){//소괄호에 조건판단한대상에 되는 데이터 순서대로 다실행함
+			case 37:hero.velX=-2;break;
+			case 39:hero.velX=+2;break;
+			case 32:fire(); break;
+   }
+});
+window.addEventListener("keyup", function(){
+
+		hero.velX=0;//어떠한 키든 띠우면 작동함
+});
+function bgEffect(){
+	a++;
+	stage.style.backgroundPosition="0px "+a+"px";//+"사이는 띠지않는다.
+	setTimeout("bgEffect()",10);
+}
+function fire(){
+	//스페이스누를때마다 인스턴스 생성
+	//인스턴스랑 객체지향 언어에서 클래스라는 거푸집으로 메모리에 생성되는 객체1단위
+	var bullet= new Bullet2(stage,10,10,hero.x+(hero.width/2),700);
+	bullet.init();
+
+}
+</script>
+</head>
+<body>
+	<div id="stage">
+	</div>
+</body>
+</html>

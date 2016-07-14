@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>자바 스크립트 배열</title>
+<script>
+var f1=new Array(4);
+f1[0]="딸기";
+f1[1]="사과";
+f1[2]="망고";
+f1[3]="레몬";
+//원하는 요소를 삭제(배열)
+delete f1[2];
+/*document.write("배열의 길이는"+f1.length);
+document.write("<br>");
+document.write("삭제후 3번째 요소의 값은?<br>"+f1[2]);*/
+for(var i=0; i<f1.lenght;i++){
+	document.write(f1[i]);
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>

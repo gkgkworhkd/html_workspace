@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>왓다리갓다리</title>
+<style>
+#pic{
+	position:absolute;
+	left:0px;
+	top:200px;
+}
+</style>
+
+<script>
+var x=0;
+
+function move(){
+	x=x+10;
+	
+	document.getElementById("pic").style.left=x+"px"
+	console.log(x);
+		
+
+
+
+
+	setTimeout("move()",10)
+}
+
+</script>
+</head>
+<body>
+<img src="../Images/pic.jpg" width="100px" id="pic"><br>
+<input type="button" value="몬스터볼~" onClick="move()">
+</body>
+</html>
+                        

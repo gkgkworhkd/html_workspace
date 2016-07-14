@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+          /* 이영역은 Html 이아닌 CSS영역이다  제한없는 글씨 크기 제한없는 컨텐츠 위치
+		  디자인 보조영역
+		  */
+		  
+#pic{
+  position:absolute;	
+  left:200px;/*x 축*/
+  top:300px;/*y 축*/
+  transform:rotate(0deg)
+  transform:scale(1.1)
+}
+
+</style>
+<script>
+var x=200;
+var y=300;
+var d=0;
+var a=1;
+var b=1;
+//버튼을 누르면 우측으로(left 증가) 움직이장!!
+function moveRight(){
+	//문서내에 pic이라 불리는 이미지의 style 속성중 left값 변경
+	x=x+10;
+	document.getElementById("pic").style.left=x+"px"
+}
+
+function moveLeft(){
+	x=x-10;
+	document.getElementById("pic").style.left=x+"px"
+}
+
+
+function moveUp(){
+	y=y-10;
+	document.getElementById("pic").style.top=y+"px"
+}
+
+function moveDown(){
+	y=y+10;
+	document.getElementById("pic").style.top=y+"px"
+}
+
+function spin(){
+	d=d+20;
+	document.getElementById("pic").style.transform="rotate("+d+"deg)"
+}
+function bbb(){
+	a++;
+	b++;
+document.getElementById("pic").style.transform="scale("+a+"."+b+")"
+}
+</script>
+</head>
+<body>
+<input type="button" value="좌측이동" onclick="moveLeft()">
+<input type="button" value="우측이동" onclick="moveRight()">
+<input type="button" value="위쪽" onclick="moveUp()">
+<input type="button" value="아래" onclick="moveDown()">
+<input type="button" value="돌리기" onclick="spin()">
+<input type="button" value="키우기" onclick="bbb()">
+
+<img src="../Images/pic.jpg" id="pic" width="100">
+
+  
+</body>
+</html>

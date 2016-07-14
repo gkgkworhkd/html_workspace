@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>회원가입 양식!</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/css/mystyle.css" />
+<script>
+var Email=["google.com","daum.net","nate.com","naver.com"];
+var year,month,date;
+
+window.addEventListener("load",function(){
+	init();
+});
+
+function init(){
+	form1.mid.focus();//돔을 이용한 접근 돔이란? document object Model=dom HTML의 테그들을 객체화 되는것!
+	//form1.mid.value="대한민국";//조작기 인터페이스! 객체는 메서드와 변수만을사용한다!
+	//form1.action="http://daum.net";//전송  url기재!!
+	//form1.submit();  
+
+	//유효성 체크!! API?=Application Programming Interface 프로그램 개발시 사용되는 라이브러리!! 사전!
+	//API Document (라이브러리 설명서)
+	/*
+	외부 프로그래밍언어가 tag요소들을 제어할수 있도록 지원되는 API를가르켜 DOM이라한다.!
+	*/
+	form1.jumin2.addEventListener("keyup",function(){
+		checkGender();
+	});
+
+	var d=new Date();
+
+	year=d.getFullYear();
+	month=d.getMonth()+1;
+	date=d.getDate();
+	setBirth();	
+}
+function checkGender(){
+var g=form1.jumin2.value.charAt(0);
+ if(g=="1"){
+	form1.gender[0].checked=true;
+ }else if(g=="2"){
+	form1.gender[1].checked=true;
+ }
+
+}
+function regist(){
+	if(form1.mid.value==""){
+			alert("아이디를 입력하세요");
+			form1.mid.focus();
+			return;
+		}else if(form1.pwd.value==""){
+			alert("비밀번호를 입력하세요");
+			form1.pwd.focus();
+			return;	
+		}else if(form1.pwd2.value!=form1.pwd.value){
+			alert("비밀번호를 입력하세요");
+			form.pwd2.value="";
+			form1.pwd.focus();
+			return;
+		}else if(form1.mname.value.length<1){//string 객체의 length속성
+			//string객체는 new연산자를 사용하지않더라도 문자열이 메모리에 올라오기만하면
+			//그자체의 데이터가 곧 string데이터임
+			alert("이름을 올려주세여");
+			form1.mname.focus();
+			return;
+		}
+	
+	form1.action="http://daum.net";//전송  url기재!!
+	form1.submit();
+}
+function setBirth(){
+
+	for(var i=2000; i>=1930;i--){
+	var opy=document.createElement("option");	
+	opy.text=i;
+	if(i==year){
+		opy.selected=true;
+	}
+	form1.yy.add(opy);
+	}
+	for(var i=1; i<=12;i++){
+	var opm=document.createElement("option");	
+	opm.text=i;
+	form1.mm.add(opm);
+	}
+	for(var i=1; i<=31;i++){
+	var opd=document.createElement("option");	
+	opd.text=i;
+	form1.dd.add(opd);
+	}
+	for(var i=0;i<Email.length;i++){
+	var op=document.createElement("option");	
+	op.text=Email[i]
+	fom1.mail_sever.add(op);
+	}
+}
+function findZip(){
+	//새창을 띄운다
+	window.open("zipcode.html","pop","width=400px,height=500px,left=500px,top=100px,resizeable=no");
+}
+
+</script>
+<body>
+	<form name="form1">
+		<table width="600px" border="1px" align="center">
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="mid"></td>
+			</tr>
+
+			<tr>
+				<td>패스워드</td>
+				<td><input type="password" name="pwd"></td>
+			</tr>
+
+			<tr>
+				<td>패스워드 확인</td>
+				<td><input type="password"name="pwd2"></td>
+			</tr>
+
+			<tr>
+				<td>이름</td>
+				<td><input type="text" name="mname"></td>
+			</tr>
+
+			<tr>
+				<td>주민번호</td>
+				<td><input type="text" name="jumin1" maxlength="6" >-<input type="text" name="jumin2" maxlength="6"></td>
+			</tr>
+
+			<tr>
+				<td>성별</td>
+				<td>
+					<input type="radio" name="gender">남
+					<input type="radio" name="gender">여	
+				</td>
+			<tr>
+				<td>생년월일</td>
+				<td>
+					<select name="yy">
+					</select>년
+					<select name="mm"></select>월
+					<select name="dd"></select>일
+				</td>
+			</tr>
+
+			<tr>
+				<td>우편번호</td>
+				<td>
+					<input type="text" name="zipcode1" readonly>-<input type="text" name="zipcode2" readonly>
+					<input type="button" value="검색" onClick="findZip()">
+				</td>
+			</tr>
+
+			<tr>
+				<td>주소</td>
+				<td><input type="text" name="add1"><br><input type="text" name="add2"></td>
+			</tr>
+
+			<tr>
+				<td>이메일</td>
+				<td>
+					<input type="text" name="mail_id">@<select name="mail_server"></select>
+				</td>		
+			</tr>
+
+			<tr>
+				<td>연락쳐</td>
+				<td>
+					<select name="tel1"></select>
+					-<input type="text" name="tel2">	
+					-<input type="text" name="tel2">		
+				</td>
+			</tr>
+
+			<tr>
+				<td>취미</td>
+				<td>
+					*2개이상 선택해야함<br>
+					영화<input type="checkbox">
+					운동<input type="checkbox">
+					요리<input type="checkbox">
+					음악<input type="checkbox">
+					그림<input type="checkbox">
+					발야구<input type="checkbox">
+				</td>
+			</tr>
+			<tr>
+				<td>남길 메세지</td>
+				<td>
+					<textarea name="msg" rows="5" cols="50"></textarea>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="회원가입" onclick="regist()">
+					<input type="button" value="다시작성">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

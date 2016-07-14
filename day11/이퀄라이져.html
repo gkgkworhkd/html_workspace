@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>이퀄라이져</title>
+<style>
+body{
+	margin:0px;
+}
+#stage{
+	width:700px;
+	height:500px;
+}
+
+</style>
+<script src="../lib/lib.js"></script>
+<script>
+var bgArray=["red","orange","yellow","green","blue","navy","purple"];
+var reactArray=new Array();//사각형에 담기위한 배열 이유는 다른\함수에서 사용ㅎㅏ기위해!
+var Rect= function(stage,bg,width,height,x,y){
+	this.stage=stage;
+	this.div;
+	this.bg=bg;
+	this.width=width;
+	this.height=height;
+	this.x=x;
+	this.y=y;
+	this.targetY=0;//사각형이 늘어날 Y측 좌표값
+	this.a=0.9;
+
+	this.init=function(){
+		var me=this;
+		this.div=document.createElement("div");
+		this.div.style.background=this.bg;
+		
+		this.div.style.width=this.width+"px";
+		this.div.style.height=this.height+"px";
+		this.div.style.position="absolute";
+		this.div.style.left=this.x+"px";
+		this.div.style.top=this.y+"px";
+		
+		this.stage.appendChild(this.div);
+
+		this.div.addEventListener("mouseover",function(){
+			//alert(me.bg+"올렸어?"); 이해안되
+			me.targetY=500;
+			
+		});
+		//마우스 내려놓으면
+		this.div.addEventListener("mouseout",function(){
+			me.targetY=0;
+			me.div.style.height=40+"px";
+		});
+		
+		this.move();
+	}
+	
+	this.move=function(){
+		var me=this;
+		var y=parseInt(this.div.style.height)+5
+		
+		//지정된 targetY만큼 height를 늘리자
+		this.div.style.height=this.targetY-this.a*(this.targetY-y)+"px";
+		//this.div.style.height=40+this.targetY+"px";
+		setTimeout(function(){
+		me.move();
+		},10);
+	}
+	
+}
+
+window.addEventListener("load",function(){
+	init();
+	
+});
+//문서가 로드되면, 원하는 갯수의 사각형을 가로방향으로 나열!!
+function init(){
+	for(var i=0; i<=6;i++){
+	var rect=new Rect(stage,bgArray[i],100,40,(100*i),0);
+	rect.init();
+	reactArray[i]=rect;
+	}
+	dance();
+}
+//일정한 주기간격으로 사용자가 마우스를 올려놓지않더라도,
+//각 사각형이 보유한 targetY의 값을 랜덤하게 부여하자!!
+function dance(){
+	for(var i=0; i<reactArray.length;i++){
+		
+		reactArray[i].targetY=getRandomByRange(500,40);
+	
+	}
+	setTimeout("dance()",100);
+}
+
+</script>
+</head>
+
+<body>
+	<div id="stage">
+	</div>
+</body>
+</html>

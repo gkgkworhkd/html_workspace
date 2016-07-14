@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>로그인창 만들기</title>
+<script>
+///ID와 PW입력을 제대로 작성한 사람에 대해서만
+function loginCheck(){
+	if(document.getElementById("member_id").value==""){
+	alert("아이디입력해");// ""만쓰면 아무것도 없으면
+	document.getElementById("member_id").focus();
+	return;
+		//실행부로하여금 호출부로 돌아가야됨 onClickd으로
+	}else if(!document.getElementById("member_pw").value){  //!도 같음
+		alert("비밀번호입력해");
+	document.getElementById("member_pw").focus();	
+	return;
+	}
+	
+	location.href="http://daum.net"
+	//서버에 정보를 보내기 전에 이유저가 제대로 입력햇는지 여부를
+	//체크해보자=유효성 체크!!
+		
+
+}
+</script>
+</head>
+<body>
+	<table width="300px" border="1px" align="center">
+		<tr>
+			<td>ID</td>
+			<td>
+				<input type="text" maxlength="8" id="member_id">
+			</td>
+		</tr>
+		<tr>
+			<td>PassWord</td>
+				<td>
+					<input type="password" maxlength="8"id="member_pw">
+				</td><!-- 페스워드와 최대글자수-->
+		</tr>
+			<td colspan="2">
+			<input type="button" value="회원가입">
+			<input type="button" value="ID/PW찾기">
+			<input type="button" value="로그인" onClick="loginCheck()">
+			</td>  <!-- colspan 통합 =2 개수-->
+	</table>
+</body>
+</html>

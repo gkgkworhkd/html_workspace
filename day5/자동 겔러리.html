@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>자동 겔러리</title>
+<style>
+#wrapper{
+	width:700px;
+	height:650px;
+	/*background:yellow;*/
+	margin:auto;
+
+}
+#controller{
+	width:100%;
+	height:50px;
+	background:#ff33cc;
+	text-align:center;
+}
+/*한칸 띄우면, 안쪽에 하위요소의 의미*/
+#controller img{
+	width:40px
+}
+
+#aa_prev{
+	transform:rotate(180deg);
+	
+}
+</style>
+<script>
+var n=1;
+function next(){
+	n++;
+	if(n<=10){
+	document.getElementById("big").src="../images/"+n+".jpg"
+	}else{
+		n=1;
+	}
+}
+//자동이란 ,우리가 정의 해 놓은 함수를 인간이아닌 시스템이 대신 호출해주는거
+function auto(){
+	//자동호출
+	setInterval("next()",500);//제 3자가 호출을 하면 interval!!!!! 본인이 호출하면 setTimeout!!
+
+}
+
+</script>
+
+</head>
+<body>
+
+<div id="wrapper">
+
+	<img src="../images/1.jpg" width="100%"id="big">
+	<div id="controller">
+		<img src="../images/aa.png" id="aa_prev">
+		<img src="../images/auto.png" id="aa_auto" onClick="auto()" >
+		<img src="../images/aa.png" id="aa_next" onClick="next()">
+	</div>
+
+</div>
+
+</body>
+</html>

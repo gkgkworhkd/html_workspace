@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script>
+//문서가 실행되면 아래의 택스트 박스에 내이름 넣기
+function init(){
+document.getElementById("txt").value="사과";
+}
+</script>
+</head>
+<body onLoad="init()">
+<!--
+<input type=text onFocus="alert('왁!!!')" onBlur="alert('갔어?')">
+-->
+<input type="text" id="txt" onChange="alert('변경헀어?')">
+<select onChange="alret('바보')">
+	<option>선택하시오</option>
+	<option>네이버</option>
+	<option>구글</option>
+	<option>다음</option>
+	
+</select>
+</body>
+
+</html>

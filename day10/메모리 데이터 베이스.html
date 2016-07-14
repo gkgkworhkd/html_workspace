@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>메모리 데이터베이스</title>
+<style>
+#stage{
+	width:650px;
+	height:600px;
+	margin:auto;
+	background:black;
+}
+#txt{
+	width:150px;
+	height:600px;
+	background:green;
+	float:left;
+
+
+}
+#info{
+	width:500px;
+	height:600px;
+	background:yellow;
+	float:left;
+
+}
+</style>
+<script>
+var bt;
+var m_id;
+var psw;
+var memberList=new Array();//크기는 정해져있으면 앙대여
+var count=0;
+var table;
+window.addEventListener("load",function(){
+	getTitle();
+	init();
+	
+});
+function init(){
+	bt=document.getElementById("bt");
+	m_id=document.getElementById("m_id");
+	psw=document.getElementById("psw");
+	bt.addEventListener("click",function(){		//MVC 디자인과 프로그램을 분리하는것 
+	
+	//alert("없떠")
+	//아이디를 입력하지않으면 욕
+	//제대로 넣은경우 등록 절챠수행
+		if(m_id.value==""){
+			m_id.focus();//커서올리기
+			alert("꽝");
+		return;
+		}else if(!psw.value){
+			psw.focus();
+			alert("꽝");
+			return;
+		}
+		//제대로 넣은 경우엔 등록철차 수행
+		//지금 등록하려는 사람의 아이디와 패스워드를 일차원배열에 보관
+		
+		var member=[m_id.value,psw.value];
+		/*직접 세는 법
+		memberList[count]=member;
+		count++;*/
+		memberList.push(member);
+		alert(memberList.length+"번쨰");
+			alert("축하합니당");
+			
+			getList();
+	});
+};
+
+//등록된 회원 명단을 테이블로 출력하기!!
+function getList(){
+	initTable();
+	var len=memberList.length;
+	var num=len;
+	for(var i=len-1;i>=0;i--){
+		var recode_tr=document.createElement("tr");
+		var td0=document.createElement("td");
+		var td1=document.createElement("td");
+		var td2=document.createElement("td");
+
+		td0.innerText=num--;
+		td1.innerText=memberList[i][0];//첫번째 레코드에 들어있는 아이디
+		td2.innerText=memberList[i][1];//첫번째 레코드에 들어있는 pws
+		recode_tr.appendChild(td0);
+		recode_tr.appendChild(td1);
+		recode_tr.appendChild(td2);
+		table.appendChild(recode_tr);
+	}
+	//appendChild의 특징상 테이블에 기존값이 누적되므로 리스를 
+	//보여주기 전에 table의 자식요소를 싹 지운다
+
+function initTable(){
+	table.innerHTML="";
+	 getTitle();
+
+}
+	
+}
+//제목을 정의하는 함수
+function getTitle(){
+	table=document.createElement("table");
+	table.style.width=450+"px";
+	table.style.border=1+"px";
+	//tr도 생성합시다
+	//2차원 배열의 크기만큼만들자
+	var tr=document.createElement("tr");//tr은 가로 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	var no_td=document.createElement("td");//1차원배열의 크기만큼 3개염 no용td
+	no_td.innerText="번호";
+	var id_td=document.createElement("td");
+	id_td.innerText="id";
+	var pw_td=document.createElement("td");
+	pw_td.innerText="패스워드";
+	//생성된 제목 td들을 tr에추가한다
+	tr.appendChild(no_td);
+	tr.appendChild(id_td);
+	tr.appendChild(pw_td);
+	table.appendChild(tr);
+	//이후 tr부터는 실제 등록된 데이터가 출력되어야한다.
+	info.appendChild(table);//div 에 테이블 출력
+}
+</script>
+</head>
+<body>
+	<div id="stage">
+		<div id="txt">
+			ID: <input type="text" size="7" maxlength="12" id="m_id"><br>
+			PW:<input type="password" size="7" maxlength="8" id="psw" ><br>
+			<input type="button" value="등록" id="bt">
+		</div>
+		<div id="info"></div>
+	</div>
+</body>
+</html>
