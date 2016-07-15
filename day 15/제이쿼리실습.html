@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>제이쿼리실습</title>
+<style>
+/*스타일 시트의 문법 구조는
+결국 누구를 어떻게 처리할지!/
+누구=#아이디,태그명 선택자!(selector)
+
+*/
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+/*
+	제이 쿼리도 누구를 어떻게 처리할지에 관한 문법 구조를 갖는다
+	다행스러운것은 JQuery의 선택자는 기존에 우리가 알고있는CSS선택자를 그대로따른다
+*/
+function hide(){
+	var bt=document.getElementById("bt");
+	bt.style.display="none";
+}
+//window.addEventListener("load",function(){});
+$(document).ready(function(){
+	
+	$("button").hide(1000);
+	$("button").show(1000);
+});
+</script>
+</head>
+<body>
+	<input type="button" value="나곧 사라질거임" onClick="hide()" id="bt">
+	<button>나버튼</button>
+</body>
+</html>
